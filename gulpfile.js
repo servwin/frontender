@@ -51,9 +51,9 @@ const path = {
         js:     srcPath + "assets/js/**/*.js",
         css:    srcPath + 'assets/**/' + preprocessor + '/**/*',
         images: srcPath + "assets/images/**/*.{jpg,png,svg,gif,ico,webp,webmanifest,xml,json}",
-        svg:  srcPath + "assets/images/svg/**.svg",
         fonts:  srcPath + "assets/fonts/**.ttf",
         resources:  srcPath + "assets/resources/**/*.*",
+        svg:  srcPath + "assets/images/svg/**.svg"
        
     },
     clean: "./" + distPath
@@ -119,15 +119,6 @@ function images() {
   .pipe(browserSync.stream());
 }
 
-function fonts() {
-  src(path.src.fonts)
-		.pipe(ttf2woff())
-		.pipe(dest(path.build.fonts))
-	return src(path.src.fonts)
-		.pipe(ttf2woff2())
-		.pipe(dest(path.build.fonts))
-    .pipe(browserSync.stream());
-}
 function svgSprites() {
   return src(path.src.svg)
   .pipe(svgSprite({
@@ -138,8 +129,18 @@ function svgSprites() {
     }
   }))
   .pipe(dest(path.build.svg))
-  .pipe(browserSync.stream());
 }
+
+function fonts() {
+  src(path.src.fonts)
+		.pipe(ttf2woff())
+		.pipe(dest(path.build.fonts))
+	return src(path.src.fonts)
+		.pipe(ttf2woff2())
+		.pipe(dest(path.build.fonts))
+    .pipe(browserSync.stream());
+}
+
 
 function resources() {
   return src(path.src.resources)
@@ -170,6 +171,7 @@ function startWatch() {
   watch(path.watch.js, js);
   watch(path.watch.images, images);
   watch(path.watch.fonts, fonts);
+  watch(path.watch.svg, svgSprites);
 }
 
 exports.html = html;

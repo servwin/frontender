@@ -29,10 +29,21 @@ h5 {
 h6 {
   font-size: 16px;
 }
+p {
+  margin: 0 0 10px;
+}
 a {
 	text-decoration: none;
 	display: inline-block;
 	color: inherit;
+}
+ul,
+li {
+  margin: 0;
+  padding: 0;
+}
+.list-reset {
+  list-style: none;
 }
 button {
   cursor: pointer;
@@ -44,7 +55,16 @@ button {
 hr {
  border: 1px solid #f2f2f2;
 }
-
+img {
+  max-width: 100%;
+  height: auto;
+}
+body {
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  color: $black;
+  line-height: 1.5;
+}
 .container {
   width: 100%;
   max-width: 1200px;
@@ -55,7 +75,27 @@ hr {
   display: flex;
   flex-direction: column;
   min-height: 100%;
+  overflow: hidden;
 }
 .main {
   flex: 1 1 auto;
+}
+.section-header {
+  text-align: center;
+}
+.section-header__title {
+  margin-bottom: 10px;
+  font-size: 35px;
+}
+.section-header__descr {
+  font-size: 17px;
+  margin-bottom: 40px;
+  line-height: 1.7;
+}
+.section {
+  padding-bottom: 20px;
+}
+input,textarea {
+  outline: none;
+  resize: none;
 }
